@@ -1,35 +1,28 @@
-[general]
 name=Weather Picker
-description=Click map to get Open-Meteo weather chart PNG
-version=1.1
 qgisMinimumVersion=3.16
 qgisMaximumVersion=4.99
-version=0.1
+description=Auf die Karte klicken und Wetterdaten inkl. 7-Tage-Vorschau (Open-Meteo) als Diagramm anzeigen / Click the map to show weather data incl. 7-day forecast (Open-Meteo) as a chart
+version=0.3
 author=Mike Elstermann (#geoObserver)
 email=news@geoobserver.de
 
-description=Einfache Wetterauskunft inkl. 7 Tage Vorschau für die angeklickte Koordinate / Basic weather information, including a 7-day forecast for the selected location
+about=Einfache Wetterauskunft inkl. 7-Tage-Vorschau für die angeklickte Koordinate. Temperatur- und Regenverlauf werden als Diagramm dargestellt. Die Daten stammen von der Open-Meteo-API (https://open-meteo.com). Der Netzwerkabruf läuft über den QGIS-Netzwerk-Manager und berücksichtigt damit die in QGIS hinterlegten Proxy-Einstellungen.
+    -------------------------
+    Simple weather information including a 7-day forecast for the clicked location. Temperature and rainfall are rendered as a chart. Data is provided by the Open-Meteo API (https://open-meteo.com). Network requests go through the QGIS network manager and therefore honour the proxy settings configured in QGIS.
 
-about=(08.06.2026, v0.1)
-		Einfache Wetterauskunft inkl. 7 Tage Vorschau für die angeklickte Koordinate. Das Plungin nutze die Open-Meteo API.
-		
-		-------------------------
-		
-		Simple weather information, including a 7-day forecast for the selected location. The plugin uses the OpenMeteo API.
-
-
-tags=weather, picker, weatherpicker, open-meteo
+tracker=https://github.com/geoObserver/weather_picker/issues
+repository=https://github.com/geoObserver/weather_picker
+homepage=https://geoobserver.de/
 
 category=Web
-icon=GeoBasis_Loader_icon.png
-
-homepage=https://geobasisloader.de/
-repository=https://github.com/geoObserver/weather_picker/
-tracker=https://github.com/geoObserver/weather_picker/issues/
-
+icon=logo.png
 experimental=False
 deprecated=False
 server=False
 hasProcessingProvider=False
 
-changelog=0.1 Initial Upload
+tags=weather,forecast,picker,open-meteo,temperature,rain,wetter,vorhersage
+
+changelog=0.3 - Überarbeitete Robustheit & Darstellung: umschaltbares Werkzeug (Toggle korrekt), Map-Tool wird beim Entladen sauber zurückgesetzt, nur Linksklick löst den Abruf aus. Strukturierte API-Validierung inkl. Filtern von null-Werten. Pixelscharfes HiDPI-Rendering (devicePixelRatio), geglättete Bézier-Temperaturkurve mit Farbverlauf-Fläche, gerundete Achsen, "Jetzt"-Linie und Wochentags-Beschriftung. Netzwerk-Timeout-Timer wird im Erfolgsfall gestoppt. Durchgängig deutsche Beschriftungen, Meldungen und Kommentare.
+    0.2 - Netzwerkabruf über QGIS-Netzwerk-Manager (QgsBlockingNetworkRequest) statt Python-requests: respektiert nun die QGIS-/System-Proxy-Einstellungen inkl. Authentifizierung (Fix für "407 Proxy authentication required" im Firmennetz). Qt5/Qt6-kompatible Enum-Schreibweise. 15-Sekunden-Timeout statt Hängen am 60-s-Default.
+    0.1 - Initial Upload
