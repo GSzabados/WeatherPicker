@@ -1,4 +1,5 @@
 <div align="center">
+
 <img src="logo.png" alt="Weather Picker" width="84" />
 
 # Weather Picker — QGIS-Plugin
@@ -7,7 +8,7 @@
 **Click the map → weather data incl. 7‑day forecast as a chart.**
 
 [![QGIS](https://img.shields.io/badge/QGIS-3.16%2B-589632?logo=qgis&logoColor=white)](https://qgis.org)
-[![Version](https://img.shields.io/badge/version-0.4-blue)](metadata.txt)
+[![Version](https://img.shields.io/badge/version-0.5-blue)](metadata.txt)
 [![License: GPL v2](https://img.shields.io/badge/license-GPLv2-blue.svg)](LICENSE)
 [![Data: Open-Meteo](https://img.shields.io/badge/data-Open--Meteo-orange)](https://open-meteo.com)
 [![Data license: CC BY 4.0](https://img.shields.io/badge/data%20license-CC%20BY%204.0-lightgrey)](https://creativecommons.org/licenses/by/4.0/)
@@ -17,12 +18,9 @@
 
 </div>
 
----
-
 <img src="weather_picker_Screenshot_1.png" alt="Weather Picker Screenshot" width="600" />
 
 <a name="deutsch"></a>
-
 ## Deutsch
 
 Einfache Wetterauskunft inklusive 7‑Tage‑Vorschau für die angeklickte Koordinate.
@@ -31,6 +29,7 @@ Daten stammen von der [Open‑Meteo‑API](https://open-meteo.com).
 
 ### Funktionen
 - Temperaturkurve (geglättet) und Regenmengen in einem Diagramm
+- **Nächster Ort** zur Koordinate — „in der Nähe von …" im Diagramm, ermittelt über [Nominatim](https://nominatim.openstreetmap.org/) (OpenStreetMap)
 - „Jetzt"-Markierung und dezent schattierte Vergangenheit
 - **Zweisprachig DE/EN** — folgt automatisch der QGIS‑Oberflächensprache
 - Locale‑korrekte Datums‑ und Zahlenformate (Wochentag/Reihenfolge aus `QLocale`, Dezimaltrenner nach Sprache)
@@ -71,12 +70,18 @@ Das Plugin hat **keine eigenen Einstellungen**; das Verhalten wird über QGIS ge
 Beim Klick werden die **Koordinaten** der angeklickten Position (zusammen mit Ihrer
 **IP‑Adresse**) an Open‑Meteo übertragen. Laut Open‑Meteo können Server‑Logs solche
 Daten zeitweise enthalten — siehe die [Open‑Meteo‑Nutzungsbedingungen](https://open-meteo.com/en/terms).
-Das Plugin selbst schreibt Koordinaten **nur gerundet (~1 km)** ins QGIS‑Log.
+Für den **nächsten Ort** werden dieselben Koordinaten zusätzlich an
+[Nominatim/OpenStreetMap](https://operations.osmfoundation.org/policies/nominatim/)
+gesendet (Reverse‑Geocoding). Ergebnisse werden pro Position lokal zwischengespeichert,
+um die Anzahl der Anfragen gering zu halten. Das Plugin selbst schreibt Koordinaten
+**nur gerundet (~1 km)** ins QGIS‑Log.
 
 ### Lizenz & Daten
 - **Code:** [GNU GPL v2](LICENSE)
 - **Wetterdaten:** © [Open‑Meteo](https://open-meteo.com), Lizenz [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/)
+- **Ortsnamen:** © [OpenStreetMap‑Mitwirkende](https://www.openstreetmap.org/copyright), Reverse‑Geocoding via [Nominatim](https://nominatim.openstreetmap.org/) (Daten unter ODbL)
 - Der **kostenlose** Open‑Meteo‑Endpoint ist für die **nichtkommerzielle** Nutzung vorgesehen. Für kommerzielle Nutzung bitte die Open‑Meteo‑Bedingungen beachten.
+- Die **öffentliche Nominatim‑Instanz** ist für moderate Nutzung gedacht (max. 1 Anfrage/Sekunde) — siehe die [Nominatim‑Nutzungsrichtlinie](https://operations.osmfoundation.org/policies/nominatim/).
 
 ---
 
@@ -89,6 +94,7 @@ Temperature and rainfall are rendered as a pixel‑sharp chart. Data is provided
 
 ### Features
 - Smoothed temperature curve and rainfall in one chart
+- **Nearest place** for the coordinate — "near …" in the chart, resolved via [Nominatim](https://nominatim.openstreetmap.org/) (OpenStreetMap)
 - "now" marker and subtly shaded past
 - **Bilingual DE/EN** — follows the QGIS UI language automatically
 - Locale‑correct date and number formats (weekday/order from `QLocale`, decimal separator by language)
@@ -128,20 +134,25 @@ The plugin has **no settings of its own**; behaviour is driven by QGIS:
 ### Privacy
 On click, the **coordinates** of the clicked location (together with your **IP address**)
 are sent to Open‑Meteo. Per Open‑Meteo, server logs may temporarily contain such data —
-see the [Open‑Meteo terms](https://open-meteo.com/en/terms). The plugin itself only logs
-**rounded coordinates (~1 km)** to the QGIS log.
+see the [Open‑Meteo terms](https://open-meteo.com/en/terms). For the **nearest place**, the
+same coordinates are additionally sent to
+[Nominatim/OpenStreetMap](https://operations.osmfoundation.org/policies/nominatim/)
+(reverse geocoding). Results are cached locally per location to keep the request count low.
+The plugin itself only logs **rounded coordinates (~1 km)** to the QGIS log.
 
 ### License & Data
 - **Code:** [GNU GPL v2](LICENSE)
 - **Weather data:** © [Open‑Meteo](https://open-meteo.com), licensed under [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/)
+- **Place names:** © [OpenStreetMap contributors](https://www.openstreetmap.org/copyright), reverse geocoding via [Nominatim](https://nominatim.openstreetmap.org/) (data under ODbL)
 - The **free** Open‑Meteo endpoint is intended for **non‑commercial** use. For commercial use, please review the Open‑Meteo terms.
+- The **public Nominatim instance** is meant for moderate use (max. 1 request/second) — see the [Nominatim usage policy](https://operations.osmfoundation.org/policies/nominatim/).
 
 ---
 
 <a name="-sprache--language"></a>
 <div align="center">
 
-**Autor / Author:** Mike Elstermann ([#geoObserver](https://geoobserver.de/)), Thomas Wölk
+**Autor / Author:** Mike Elstermann ([#geoObserver](https://geoobserver.de/)), Thomas Wölk ·
 **Issues:** [github.com/geoObserver/weather_picker/issues](https://github.com/geoObserver/weather_picker/issues)
 
 </div>
