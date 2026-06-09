@@ -1,5 +1,4 @@
 <div align="center">
-
 <img src="logo.png" alt="Weather Picker" width="84" />
 
 <p>
@@ -322,8 +321,7 @@ requests, and a pull request for code changes.
 ---
 
 <div align="center">
-
-**Autor / Author:** Mike Elstermann ([#geoObserver](https://geoobserver.de/)) ·
+**Autor / Author:** Mike Elstermann ([#geoObserver](https://geoobserver.de/)), Thomas Wölk ·
 **Issues:** [github.com/geoObserver/WeatherPicker/issues](https://github.com/geoObserver/WeatherPicker/issues)
 
 </div>
