@@ -1,0 +1,35 @@
+[general]
+name=Weather Picker
+description=Click map to get Open-Meteo weather chart PNG
+version=1.1
+qgisMinimumVersion=3.16
+qgisMaximumVersion=4.99
+version=0.1
+author=Mike Elstermann (#geoObserver)
+email=news@geoobserver.de
+
+description=Einfache Wetterauskunft inkl. 7 Tage Vorschau für die angeklickte Koordinate / Basic weather information, including a 7-day forecast for the selected location
+
+about=(08.06.2026, v0.1)
+		Einfache Wetterauskunft inkl. 7 Tage Vorschau für die angeklickte Koordinate. Das Plungin nutze die Open-Meteo API.
+		
+		-------------------------
+		
+		Simple weather information, including a 7-day forecast for the selected location. The plugin uses the OpenMeteo API.
+
+
+tags=weather, picker, weatherpicker, open-meteo
+
+category=Web
+icon=GeoBasis_Loader_icon.png
+
+homepage=https://geobasisloader.de/
+repository=https://github.com/geoObserver/weather_picker/
+tracker=https://github.com/geoObserver/weather_picker/issues/
+
+experimental=False
+deprecated=False
+server=False
+hasProcessingProvider=False
+
+changelog=0.1 Initial Upload
