@@ -240,14 +240,14 @@ Reverse geocoding is optional: if it fails, the chart shows the coordinates only
 
 ```mermaid
 flowchart TD
-    A["Klick auf die Karte (Map-Tool)"] --> B["Koordinaten nach WGS84 (EPSG:4326)"]
-    B --> C["QGIS-Netzwerk-Manager (Proxy / Authentifizierung)"]
-    C --> D["Open-Meteo API (Wetter + 7-Tage-Vorschau)"]
-    C --> E["Nominatim / OpenStreetMap (nächster Ort, optional)"]
-    D --> F["Validierung & Aufbereitung"]
+    A["Click on the map (Map Tool)"] --> B["Coordinates according to WGS84 (EPSG:4326)"]
+    B --> C["QGIS Network Manager (Proxy / Authentication)"]
+    C --> D["Open-Meteo API (Weather + 7-day forecast)"]
+    C --> E["Nominatim / OpenStreetMap (nearest town, optional)"]
+    D --> F["Validation & Processing"]
     E --> F
-    F --> G["Diagramm rendern (QPainter, HiDPI)"]
-    G --> H["Anzeige im Dialog"]
+    F --> G["Rendering a diagram (QPainter, HiDPI)"]
+    G --> H["Display in the dialogue box"]
 ```
 
 ### Installation
