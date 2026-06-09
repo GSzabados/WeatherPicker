@@ -1,28 +1,35 @@
+# Plugin-Metadaten nach offizieller QGIS-Spezifikation:
+# https://docs.qgis.org/latest/en/docs/pyqgis_developer_cookbook/plugins/plugins.html
+# Kodierung: UTF-8. In "description"/"about"/"changelog" ist kein HTML erlaubt.
+
+[general]
+
+# --- Pflichtfelder ---------------------------------------------------------
 name=Weather Picker
 qgisMinimumVersion=3.16
-qgisMaximumVersion=4.99
-description=Auf die Karte klicken und Wetterdaten inkl. 7-Tage-Vorschau (Open-Meteo) als Diagramm anzeigen / Click the map to show weather data incl. 7-day forecast (Open-Meteo) as a chart
-version=0.3
-author=Mike Elstermann (#geoObserver)
+description=Auf die Karte klicken und Wetterdaten inkl. 7-Tage-Vorschau (Open-Meteo) als Diagramm anzeigen. / Click the map to show weather data incl. 7-day forecast (Open-Meteo) as a chart.
+version=0.4
+author=Mike Elstermann (#geoObserver), Thomas Wölk
 email=news@geoobserver.de
-
-about=Einfache Wetterauskunft inkl. 7-Tage-Vorschau für die angeklickte Koordinate. Temperatur- und Regenverlauf werden als Diagramm dargestellt. Die Daten stammen von der Open-Meteo-API (https://open-meteo.com). Der Netzwerkabruf läuft über den QGIS-Netzwerk-Manager und berücksichtigt damit die in QGIS hinterlegten Proxy-Einstellungen.
+about=Einfache Wetterauskunft inkl. 7-Tage-Vorschau für die angeklickte Koordinate. Temperatur- und Regenverlauf werden als Diagramm dargestellt. Die Oberfläche folgt automatisch der QGIS-Sprache (Deutsch/Englisch), inkl. lokalisierter Datums- und Zahlenformate. Die Daten stammen von der Open-Meteo-API (https://open-meteo.com, Daten unter CC BY 4.0). Der Netzwerkabruf läuft über den QGIS-Netzwerk-Manager und berücksichtigt damit die in QGIS hinterlegten Proxy-Einstellungen. Hinweis: Beim Klick werden die Koordinaten an Open-Meteo übertragen; der kostenlose Endpoint ist laut Open-Meteo-Nutzungsbedingungen für nichtkommerzielle Nutzung vorgesehen.
     -------------------------
-    Simple weather information including a 7-day forecast for the clicked location. Temperature and rainfall are rendered as a chart. Data is provided by the Open-Meteo API (https://open-meteo.com). Network requests go through the QGIS network manager and therefore honour the proxy settings configured in QGIS.
+    Simple weather information including a 7-day forecast for the clicked location. Temperature and rainfall are rendered as a chart. The interface follows the QGIS UI language automatically (German/English), including localized date and number formats. Data is provided by the Open-Meteo API (https://open-meteo.com, data under CC BY 4.0). Network requests go through the QGIS network manager and therefore honour the proxy settings configured in QGIS. Note: clicking sends the coordinates to Open-Meteo; per the Open-Meteo terms the free endpoint is intended for non-commercial use.
+repository=https://github.com/geoObserver/WeatherPicker
 
-tracker=https://github.com/geoObserver/weather_picker/issues
-repository=https://github.com/geoObserver/weather_picker
-homepage=https://geoobserver.de/
-
+# --- Empfohlene Felder -----------------------------------------------------
+qgisMaximumVersion=4.99
+https://geoobserver.de/qgis-plugin-weather-picker/
+tracker=https://github.com/geoObserver/WeatherPicker/issues
 category=Web
 icon=logo.png
+tags=weather,forecast,picker,open-meteo,temperature,rain,wetter,vorhersage,i18n
+
 experimental=False
 deprecated=False
 server=False
 hasProcessingProvider=False
 
-tags=weather,forecast,picker,open-meteo,temperature,rain,wetter,vorhersage
-
-changelog=0.3 - Überarbeitete Robustheit & Darstellung: umschaltbares Werkzeug (Toggle korrekt), Map-Tool wird beim Entladen sauber zurückgesetzt, nur Linksklick löst den Abruf aus. Strukturierte API-Validierung inkl. Filtern von null-Werten. Pixelscharfes HiDPI-Rendering (devicePixelRatio), geglättete Bézier-Temperaturkurve mit Farbverlauf-Fläche, gerundete Achsen, "Jetzt"-Linie und Wochentags-Beschriftung. Netzwerk-Timeout-Timer wird im Erfolgsfall gestoppt. Durchgängig deutsche Beschriftungen, Meldungen und Kommentare.
+changelog=0.4 - Sprachunterstützung DE/EN: Texte, Diagramm-Beschriftungen sowie Datums- und Zahlenformate folgen automatisch der QGIS-Oberflächensprache (Wochentag/Reihenfolge aus QLocale, Dezimaltrenner nach Sprache). Robustheits-Fixes: geteilte Toolbar wird beim Entladen nicht mehr zerstört (kein "Toolbar weg nach Reload"), strengere API-Validierung (Typ/NaN/inf, negativer Regen geklemmt), Zeitachse aus echten Zeitstempeln (Lücken korrekt), Wetterabruf ohne Cache (forceRefresh), Koordinaten werden nur gerundet geloggt, Lizenz-/Datenschutzhinweis (CC BY 4.0) ergänzt. / Language support DE/EN following the QGIS UI locale, plus robustness fixes (shared toolbar no longer destroyed on unload, stricter API validation, timestamp-based time axis, uncached fetch, rounded coordinate logging, CC BY 4.0 attribution).
+    0.3 - Überarbeitete Robustheit & Darstellung: umschaltbares Werkzeug (Toggle korrekt), Map-Tool wird beim Entladen sauber zurückgesetzt, nur Linksklick löst den Abruf aus. Strukturierte API-Validierung inkl. Filtern von null-Werten. Pixelscharfes HiDPI-Rendering (devicePixelRatio), geglättete Bézier-Temperaturkurve mit Farbverlauf-Fläche, gerundete Achsen, "Jetzt"-Linie und Wochentags-Beschriftung. Netzwerk-Timeout-Timer wird im Erfolgsfall gestoppt. Durchgängig deutsche Beschriftungen, Meldungen und Kommentare.
     0.2 - Netzwerkabruf über QGIS-Netzwerk-Manager (QgsBlockingNetworkRequest) statt Python-requests: respektiert nun die QGIS-/System-Proxy-Einstellungen inkl. Authentifizierung (Fix für "407 Proxy authentication required" im Firmennetz). Qt5/Qt6-kompatible Enum-Schreibweise. 15-Sekunden-Timeout statt Hängen am 60-s-Default.
     0.1 - Initial Upload
