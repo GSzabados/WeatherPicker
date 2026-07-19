@@ -371,9 +371,9 @@ class WeatherPickerTool(QgsMapTool):
         self, lat: float, lon: float, lang: str = "de"
     ) -> tuple[list[str], list[float], list[float], int]:
         url = (
-            "https://api.open-meteo.com/v1/forecast"
+            "https://marine-api.open-meteo.com/v1/marine"
             f"?latitude={lat}&longitude={lon}"
-            "&hourly=temperature_2m,rain"
+            "&hourly=wave_height,wave_period"
             "&past_days=2&forecast_days=7&timezone=auto"
         )
 
@@ -423,8 +423,8 @@ class WeatherPickerTool(QgsMapTool):
             data   = json.loads(content)
             hourly = data["hourly"]
             times  = hourly["time"]
-            temp   = hourly["temperature_2m"]
-            rain   = hourly["rain"]
+            temp   = hourly["wave_height"]
+            rain   = hourly["wave_period"]
         except (ValueError, KeyError, TypeError) as exc:
             raise RuntimeError(tr("err_format", lang)) from exc
 
